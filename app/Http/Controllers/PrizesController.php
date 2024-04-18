@@ -24,12 +24,12 @@ class PrizesController extends Controller
             ])->get();
             $awarded = $prizes->pluck('awarded')->sum();
             $prizes->each(function (&$prize) use ($awarded) {
-                if ( $awarded ) {
-                    $awardedProbability = round(($prize->awarded / $awarded) * 100, 2);
+                // if ( $awarded ) {
+                // }
+                $awardedProbability = round($awarded ? ($prize->awarded / $awarded) * 100 : 0, 2);
 
-                    $prize->awardedLabel = "{$prize->title} ({$awardedProbability}%)";
-                    $prize->awardedProbability = $awardedProbability;
-                }
+                $prize->awardedLabel = "{$prize->title} ({$awardedProbability}%)";
+                $prize->awardedProbability = $awardedProbability;
                 $prize->probabilityLabel = "{$prize->title} ({$prize->probability}%)";
                 $prize->probabilityColors = Prize::rndRGBColorCode();
                 $prize->rewardColors = Prize::rndRGBColorCode();
