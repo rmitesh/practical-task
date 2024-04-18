@@ -24,7 +24,7 @@ php artisan key:generate
 ```
 
 - Run migration
-> Make sure you have created database `microtech_service`.
+> Make sure you have created database `laravel_interview`.
 ```bash
-php artisan migrate --seed
+php artisan migrate
 ```
